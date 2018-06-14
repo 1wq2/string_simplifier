@@ -104,17 +104,17 @@ public class Simplifier {
         System.out.println("After step 3:    " + str3);
         System.out.println("Without artcls:  " + strWoArt);
 
-        String[] words33 = str3.split("\\s+"); //("\\s+")
-        String[] words11 = strWoArt.split("\\W");
+        String[] words3 = str3.split("\\s+"); //("\\s+")
+        String[] wordsWoArt = strWoArt.split("\\W");
 
         StringBuilder str4 = new StringBuilder(str3builder.length());
 
-        System.out.println(words33.length); //just in case
-        System.out.println(words11.length);
+        System.out.println(words3.length); //just in case
+        System.out.println(wordsWoArt.length);
 
-        for (int i = 0; i < words11.length; i++) {
-            if (!words11[i].equals("_"))
-                str4.append(words33[i] + " ");
+        for (int i = 0; i < wordsWoArt.length; i++) {
+            if (!wordsWoArt[i].equals("_"))
+                str4.append(words3[i] + " ");
 
         }
 
