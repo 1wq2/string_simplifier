@@ -112,14 +112,18 @@ public class Simplifier {
         System.out.println(words3.length); //just in case
         System.out.println(wordsWoArt.length);
 
-        char space;
+
         System.out.println(strWoArt.length());
-
-        for (int i = 0; i < strWoArt.length(); i++) {
-            if (strWoArt.charAt(i)==' '&& strWoArt.charAt(i)!=' ')
-                str4.append(str3.charAt(i));
-
+        int j=0;
+        while(j< words3.length) {
+            for (int i = 0; i < strWoArt.length(); i++) {
+                if (strWoArt.charAt(i) == ' ' && strWoArt.charAt(i) != ' '){
+                    str4.append(words3[j] + " ");
+                    j++;}
+                else j++;
+            }
         }
+        System.out.println("j=" + j);
 
         System.out.println("Final string :  " + str4); //sis k k uo u i b e th a an an thi i
     }
