@@ -105,7 +105,7 @@ public class Simplifier {
         System.out.println("Without artcls:  " + strWoArt);
 
         String[] words3 = str3.split("\\s+"); //("\\s+")
-        String[] wordsWoArt = strWoArt.split("\\W");
+        String[] wordsWoArt = strWoArt.split("\\W+"); //\W+
 
         StringBuilder str4 = new StringBuilder(str3builder.length());
 
@@ -118,7 +118,7 @@ public class Simplifier {
 
         }
 
-        System.out.println("Final string :  " + str4);
+        System.out.println("Final string :  " + str4); //sis k k uo u i b e th a an an
     }
 
 }
