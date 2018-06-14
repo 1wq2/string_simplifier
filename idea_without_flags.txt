@@ -63,7 +63,7 @@ public class Simplifier {
     }
 
     /**
-     * This method  removes letter ìeî in the end of each word
+     * This method  removes letter ‚Äúe‚Äù in the end of each word
      */
     public static void step3(String str2) {
 
@@ -109,15 +109,15 @@ public class Simplifier {
 
         StringBuilder str4 = new StringBuilder(str3builder.length());
 
-        System.out.println(words3.length); //just in case
-        System.out.println(wordsWoArt.length);
+        System.out.println("words3 length   : "+words3.length); //just in case
+        System.out.println("wordsWoArt:   " + wordsWoArt.length);
 
 
         System.out.println(strWoArt.length());
         int j=0;
         while(j< words3.length) {
-            for (int i = 0; i < strWoArt.length(); i++) {
-                if (strWoArt.charAt(i) != ' ' && strWoArt.charAt(i+1) == ' ' && i<strWoArt.length()-1 ){
+            for (int i = 1; i < strWoArt.length()+1; i++) {
+                if (strWoArt.charAt(i-1) != ' ' && strWoArt.charAt(i) == ' '){  //&& i<strWoArt.length()
                     str4.append(words3[j] + " ");
                     j++;}
                 //else j++;
