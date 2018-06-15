@@ -93,9 +93,9 @@ public class Simplifier {
      * This method  removes articles and
      * shows final result
      */
-    public static void step4(StringBuilder str3builder, String str) {
+    public static void step4(StringBuilder str3Builder, String str) {
 
-        str3 = str3builder.toString();
+        str3 = str3Builder.toString();
 
         strWoArt = str.replaceAll("\\ba\\b", "")
                 .replaceAll("\\ban\\b", "")
@@ -107,21 +107,23 @@ public class Simplifier {
         String[] words3 = str3.split("\\s+"); //("\\s+")
         String[] wordsWoArt = strWoArt.split("\\W+"); //\W+
 
-        StringBuilder str4 = new StringBuilder(str3builder.length());
+        StringBuilder str4 = new StringBuilder(str3Builder.length());
 
-        System.out.println("words3 length   : "+words3.length); //just in case
-        System.out.println("wordsWoArt:   " + wordsWoArt.length);
+        System.out.println("words3 length:   "+words3.length); //just in case
+        System.out.println("wordsWoArt length:   " + wordsWoArt.length);
 
 
-        System.out.println(strWoArt.length());
+        System.out.println("strWoArt length:     " + strWoArt.length());
         int j=0;
         while(j< words3.length) {
-            for (int i = 1; i < strWoArt.length()+1; i++) {
+            for (int i = 1; i < strWoArt.length(); i++) {
                 if (strWoArt.charAt(i-1) != ' ' && strWoArt.charAt(i) == ' '){  //&& i<strWoArt.length()
                     str4.append(words3[j] + " ");
-                    j++;}
+                    break;
+                    }
                 //else j++;
             }
+            j++;
         }
         System.out.println("j=" + j);
 
