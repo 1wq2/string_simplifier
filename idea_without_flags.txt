@@ -33,8 +33,7 @@ public class Simplifier {
         System.out.println("Original string: " + str0);
 
         str = str0.toLowerCase();
-        System.out.println("Raw string:      " + str);
-    }
+        }
 
     /**
      * This method removes "c" from the text
@@ -67,7 +66,6 @@ public class Simplifier {
 
         String[] words = str2.split("\\W");
 
-        //create empty StringBuilder with same length as string
         str3Builder = new StringBuilder(str2.length());
 
         for (String word : words) {
@@ -96,19 +94,14 @@ public class Simplifier {
 
         strWoArt = str.replaceAll("\\ba\\b", "")
                 .replaceAll("\\ban\\b", "")
-                .replaceAll("\\bthe\\b", "");
+                .replaceAll("\\bthe\\b", "")+' ';
 
         System.out.println("After step 3:    " + str3);
-        System.out.println("Without artcls:  " + strWoArt);
 
         String[] words3 = str3.split("\\s+");
         String[] wordsWoArt = strWoArt.split("\\W+");
 
         StringBuilder str4 = new StringBuilder(str3Builder.length());
-
-        System.out.println("words3 length:   "+words3.length);
-        System.out.println("wordsWoArt length:   " + wordsWoArt.length);
-        System.out.println("strWoArt length:     " + strWoArt.length());
 
         int j=0;
         while(j< words3.length+1) {
@@ -119,14 +112,12 @@ public class Simplifier {
                     continue;
                 }
                 else if(strWoArt.charAt(i-1) == ' ' && strWoArt.charAt(i) == ' '){
-                    System.out.print("o");
                     j++;
                     continue;
                 }
             }
             break;
         }
-        System.out.println("  j=" + j);
 
         System.out.println("Final string :  " + str4);
     }
