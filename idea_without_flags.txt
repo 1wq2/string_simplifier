@@ -121,6 +121,11 @@ public class Simplifier {
                     str4.append(words3[j] + " ");
                     break;
                     }
+                else if(strWoArt.charAt(i-1) == ' ' && strWoArt.charAt(i) == ' '){
+                    System.out.println("checked");
+                    j++;
+                    break;
+                }
                 //else j++;
             }
             j++;
