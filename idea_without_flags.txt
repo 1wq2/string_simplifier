@@ -15,10 +15,10 @@ public class Simplifier {
             e.printStackTrace();
         }
 
-        step1(str);
-        step2(str1);
-        step3(str2);
-        step4(str3Builder, str);
+        removeC(str);
+        removeDouble(str1);
+        removeE(str2);
+        removeArt(str3Builder, str);
     }
 
     /**
@@ -41,19 +41,19 @@ public class Simplifier {
     /**
      * This method removes "c" from the text
      */
-    public static void step1(String str) {
+    public static void removeC(String str) {
 
         str1 = str.replaceAll("ci", "si")
                 .replaceAll("ck", "k")
                 .replaceAll("c", "k");
 
-        System.out.println("After step1:     " + str1);
+        System.out.println("After removeC:     " + str1);
     }
 
     /**
      * This method removes double letters
      */
-    public static void step2(String str1) {
+    public static void removeDouble(String str1) {
         str2 = str1.replaceAll("ee", "i")
                 .replaceAll("oo", "u")
                 .replaceAll("(.)\\1+", "$1");
@@ -65,7 +65,7 @@ public class Simplifier {
     /**
      * This method  removes letter “e” in the end of each word
      */
-    public static void step3(String str2) {
+    public static void removeE(String str2) {
 
         String[] words = str2.split("\\W");
 
@@ -93,7 +93,7 @@ public class Simplifier {
      * This method  removes articles and
      * shows final result
      */
-    public static void step4(StringBuilder str3Builder, String str) {
+    public static void removeArt(StringBuilder str3Builder, String str) {
 
         str3 = str3Builder.toString();
 
@@ -120,7 +120,7 @@ public class Simplifier {
                 if (strWoArt.charAt(i-1) != ' ' && strWoArt.charAt(i) == ' '){  //&& i<strWoArt.length()
                     str4.append(words3[j] + " ");
                     break;
-                    }
+                }
                 else if(strWoArt.charAt(i-1) == ' ' && strWoArt.charAt(i) == ' '){
                     System.out.println("checked");
                     j++;
