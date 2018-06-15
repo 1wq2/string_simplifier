@@ -32,8 +32,6 @@ public class Simplifier {
 
         System.out.println("Original string: " + str0);
 
-        //String str0 = "cise ck c ooo oou iee be e the a an the ttthe aa aan aaaaan ";
-
         str = str0.toLowerCase();
         System.out.println("Raw string:      " + str);
     }
@@ -88,7 +86,6 @@ public class Simplifier {
         }
     }
 
-
     /**
      * This method  removes articles and
      * shows final result
@@ -104,35 +101,34 @@ public class Simplifier {
         System.out.println("After step 3:    " + str3);
         System.out.println("Without artcls:  " + strWoArt);
 
-        String[] words3 = str3.split("\\s+"); //("\\s+")
-        String[] wordsWoArt = strWoArt.split("\\W+"); //\W+
+        String[] words3 = str3.split("\\s+");
+        String[] wordsWoArt = strWoArt.split("\\W+");
 
         StringBuilder str4 = new StringBuilder(str3Builder.length());
 
-        System.out.println("words3 length:   "+words3.length); //just in case
+        System.out.println("words3 length:   "+words3.length);
         System.out.println("wordsWoArt length:   " + wordsWoArt.length);
-
-
         System.out.println("strWoArt length:     " + strWoArt.length());
+
         int j=0;
-        while(j< words3.length) {
+        while(j< words3.length+1) {
             for (int i = 1; i < strWoArt.length(); i++) {
-                if (strWoArt.charAt(i-1) != ' ' && strWoArt.charAt(i) == ' '){  //&& i<strWoArt.length()
+                if (strWoArt.charAt(i-1) != ' ' && strWoArt.charAt(i) == ' '){
                     str4.append(words3[j] + " ");
-                    break;
+                    j++;
+                    continue;
                 }
                 else if(strWoArt.charAt(i-1) == ' ' && strWoArt.charAt(i) == ' '){
-                    System.out.println("checked");
+                    System.out.print("o");
                     j++;
-                    break;
+                    continue;
                 }
-                //else j++;
             }
-            j++;
+            break;
         }
-        System.out.println("j=" + j);
+        System.out.println("  j=" + j);
 
-        System.out.println("Final string :  " + str4); //sis k k uo u i b e th a an an thi i
+        System.out.println("Final string :  " + str4);
     }
 
 }
