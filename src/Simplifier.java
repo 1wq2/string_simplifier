@@ -25,17 +25,15 @@ public class Simplifier {
      * This method injects text to string format
      * and shows raw data
      */
-    public static void readFile() throws FileNotFoundException {  //throws FileNotFoundException
+    public static void readFile() throws FileNotFoundException {
 
         String str0 = new Scanner(new File("readme.txt"))
                 .useDelimiter("\\A").next();
 
         System.out.println("Original string: " + str0);
 
-        //String str0 = "cise ck c ooo oou iee be e the a an the ttthe aa aan aaaaan ";
-
         str = str0.toLowerCase();
-        System.out.println("Raw string:      " + str);
+
     }
 
     /**
@@ -59,7 +57,6 @@ public class Simplifier {
                 .replaceAll("(.)\\1+", "$1");
 
         System.out.println("After step 2:    " + str2);
-
     }
 
     /**
@@ -69,7 +66,6 @@ public class Simplifier {
 
         String[] words = str2.split("\\W");
 
-        //create empty StringBuilder with same length as string
         str3Builder = new StringBuilder(str2.length());
 
         for (String word : words) {
@@ -87,8 +83,7 @@ public class Simplifier {
             }
         }
     }
-
-
+    
     /**
      * This method  removes articles and
      * shows final result
@@ -102,23 +97,16 @@ public class Simplifier {
                 .replaceAll("\\bthe\\b", "_");
 
         System.out.println("After step 3:    " + str3);
-        System.out.println("Without artcls:  " + strWoArt);
 
-        String[] words3 = str3.split("\\s+"); //("\\s+")
-        String[] wordsWoArt = strWoArt.split("\\W+"); //\W+
+        String[] words3 = str3.split("\\s+");
+        String[] wordsWoArt = strWoArt.split("\\W+");
 
         StringBuilder str4 = new StringBuilder(str3builder.length());
-
-        System.out.println(words3.length); //just in case
-        System.out.println(wordsWoArt.length);
 
         for (int i = 0; i < wordsWoArt.length; i++) {
             if (!wordsWoArt[i].equals("_"))
                 str4.append(words3[i] + " ");
-
         }
-
-        System.out.println("Final string :  " + str4); //sis k k uo u i b e th a an an
+        System.out.println("Final string :  " + str4);
     }
-
 }
