@@ -117,8 +117,6 @@ public class Simplifier {
             }
             break;
         }
-
         System.out.println("Final string :  " + str4);
     }
-
 }
