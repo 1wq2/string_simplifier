@@ -6,7 +6,7 @@ import java.io.File;
 public class Simplifier {
 
     static String str,str1,str2, str3, strWoArt;
-    static StringBuilder str3Builder;
+    static StringBuilder str3Builder, str4;
 
     public static void main(String[] args) {
         try {
@@ -18,7 +18,7 @@ public class Simplifier {
         removeC(str);
         removeDouble(str1);
         removeE(str2);
-        removeArt(str3Builder, str);
+        removeArt(str3, str);
     }
 
     /**
@@ -42,6 +42,7 @@ public class Simplifier {
     public static void removeC(String str) {
 
         str1 = str.replaceAll("ci", "si")
+                .replaceAll("ce", "se")
                 .replaceAll("ck", "k")
                 .replaceAll("c", "k");
 
@@ -56,7 +57,7 @@ public class Simplifier {
                 .replaceAll("oo", "u")
                 .replaceAll("(.)\\1+", "$1");
 
-        System.out.println("After step 2:    " + str2);
+        System.out.println("After removeDouble:    " + str2);
     }
 
     /**
@@ -82,31 +83,31 @@ public class Simplifier {
                 str3Builder.append(str2.charAt(str3Builder.length()));
             }
         }
+        str3 = str3Builder.toString().trim();
+        System.out.println("After removeE:    " + str3);
     }
-    
+
     /**
      * This method  removes articles and
      * shows final result
      */
-    public static void removeArt(StringBuilder str3builder, String str) {
+    public static void removeArt(String str3, String str) {
 
-        str3 = str3builder.toString();
 
         strWoArt = str.replaceAll("\\ba\\b", "_")
                 .replaceAll("\\ban\\b", "_")
                 .replaceAll("\\bthe\\b", "_");
 
-        System.out.println("After step 3:    " + str3);
-
         String[] words3 = str3.split("\\s+");
         String[] wordsWoArt = strWoArt.split("\\W+");
 
-        StringBuilder str4 = new StringBuilder(str3builder.length());
+        str4 = new StringBuilder(str3.length());
 
         for (int i = 0; i < wordsWoArt.length; i++) {
             if (!wordsWoArt[i].equals("_"))
                 str4.append(words3[i] + " ");
         }
+
         System.out.println("Final string :  " + str4);
     }
 }
