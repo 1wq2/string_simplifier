@@ -1,39 +1,28 @@
-
-import java.io.FileNotFoundException;
-import java.util.*;
-import java.io.File;
-
 public class Simplifier {
 
-    static String str,str1,str2, str3, strWoArt;
-    static StringBuilder str3Builder, str4;
+    static String str,strRemoveC, strRemoveDouble, strRemoveE, strWoArt;
+    static StringBuilder str3Builder, finalOutput;
 
     public static void main(String[] args) {
-        try {
-            readFile();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
+        readFile();
         removeC(str);
-        removeDouble(str1);
-        removeE(str2);
-        removeArt(str3, str);
+        removeDouble(strRemoveC);
+        removeE(strRemoveDouble);
+        removeArt(strRemoveE, str);
     }
 
     /**
      * This method injects text to string format
      * and shows raw data
      */
-    public static void readFile() throws FileNotFoundException {
+    public static void readFile() {
 
-        String str0 = new Scanner(new File("readme.txt"))
-                .useDelimiter("\\A").next();
+        String str0 = "cise ck c ooo oou iee be e the a an the ttthe aa aan aaaaan Theee ee";
 
         System.out.println("Original string: " + str0);
 
         str = str0.toLowerCase();
-
     }
 
     /**
@@ -41,27 +30,28 @@ public class Simplifier {
      */
     public static void removeC(String str) {
 
-        str1 = str.replaceAll("ci", "si")
+        strRemoveC = str.replaceAll("ci", "si")
                 .replaceAll("ce", "se")
                 .replaceAll("ck", "k")
                 .replaceAll("c", "k");
 
-        System.out.println("After removeC:     " + str1);
+        System.out.println("After removeC:     " + strRemoveC);
     }
 
     /**
      * This method removes double letters
      */
     public static void removeDouble(String str1) {
-        str2 = str1.replaceAll("ee", "i")
+        strRemoveDouble = str1.replaceAll("ee", "i")
                 .replaceAll("oo", "u")
                 .replaceAll("(.)\\1+", "$1");
 
-        System.out.println("After removeDouble:    " + str2);
+        System.out.println("After removeDouble:    " + strRemoveDouble);
+
     }
 
     /**
-     * This method  removes letter “e” in the end of each word
+     * This method  removes letter ?e? in the end of each word
      */
     public static void removeE(String str2) {
 
@@ -83,8 +73,8 @@ public class Simplifier {
                 str3Builder.append(str2.charAt(str3Builder.length()));
             }
         }
-        str3 = str3Builder.toString().trim();
-        System.out.println("After removeE:    " + str3);
+        strRemoveE = str3Builder.toString().trim();
+        System.out.println("After removeE:    " + strRemoveE);
     }
 
     /**
@@ -94,20 +84,32 @@ public class Simplifier {
     public static void removeArt(String str3, String str) {
 
 
-        strWoArt = str.replaceAll("\\ba\\b", "_")
-                .replaceAll("\\ban\\b", "_")
-                .replaceAll("\\bthe\\b", "_");
+        strWoArt = " " + str.replaceAll("\\ba\\b", "")
+                .replaceAll("\\ban\\b", "")
+                .replaceAll("\\bthe\\b", "")+" ";
+
 
         String[] words3 = str3.split("\\s+");
         String[] wordsWoArt = strWoArt.split("\\W+");
 
-        str4 = new StringBuilder(str3.length());
+        finalOutput = new StringBuilder(str3.length());
 
-        for (int i = 0; i < wordsWoArt.length; i++) {
-            if (!wordsWoArt[i].equals("_"))
-                str4.append(words3[i] + " ");
+        int j=0;
+        while(j< words3.length) {
+            for (int i = 1; i < strWoArt.length(); i++) {
+
+                if (strWoArt.charAt(i-1) != ' ' && strWoArt.charAt(i) == ' '){
+                    finalOutput.append(words3[j] + " ");
+                    j++;
+                    continue;
+                }
+                else if(strWoArt.charAt(i-1) == ' ' && strWoArt.charAt(i) == ' '){
+                    j++;
+                    continue;
+                }
+            }
+            break;
         }
-
-        System.out.println("Final string :  " + str4);
+        System.out.println("Final string :  " + finalOutput);
     }
 }
